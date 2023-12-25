@@ -1,0 +1,11 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/catherinestafford/Desktop/WinterProjects/Database/database'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _new_input_buffer, symObjAddr: 0x0, symBinAddr: 0x100003E04, symSize: 0x40 }
+  - { offsetInCU: 0xB9, offset: 0xB9, size: 0x8, addend: 0x0, symName: _new_input_buffer, symObjAddr: 0x0, symBinAddr: 0x100003E04, symSize: 0x40 }
+  - { offsetInCU: 0xE1, offset: 0xE1, size: 0x8, addend: 0x0, symName: _print_prompt, symObjAddr: 0x40, symBinAddr: 0x100003E44, symSize: 0x1C }
+  - { offsetInCU: 0xF6, offset: 0xF6, size: 0x8, addend: 0x0, symName: _read_input, symObjAddr: 0x5C, symBinAddr: 0x100003E60, symSize: 0x8C }
+  - { offsetInCU: 0x128, offset: 0x128, size: 0x8, addend: 0x0, symName: _close_input_buffer, symObjAddr: 0xE8, symBinAddr: 0x100003EEC, symSize: 0x30 }
+  - { offsetInCU: 0x14C, offset: 0x14C, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x118, symBinAddr: 0x100003F1C, symSize: 0x34 }
+...
