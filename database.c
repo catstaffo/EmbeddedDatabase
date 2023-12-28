@@ -173,7 +173,7 @@ void db_close(Table* table){
   if (num_additional_rows > 0){
     uint32_t page_num = num_full_pages;
     if (pager->pages[page_num] != NULL){
-      pager_flush(pager, page_num, num_additional_rows);
+      pager_flush(pager, page_num, num_additional_rows * ROW_SIZE);
       free(pager->pages[page_num]);
       pager->pages[page_num] = NULL;
     }
