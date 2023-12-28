@@ -53,7 +53,7 @@ void deserialize_row(void *source, Row* destination) {
 
 void* row_slot(Table* table, uint32_t row_num){
   uint32_t page_num = row_num / ROWS_PER_PAGE;
-  void* page = table->pages[page_num];
+  void *page = table->pages[page_num];
   if (page == NULL){
     page = table->pages[page_num] = malloc(PAGE_SIZE);
   }
@@ -122,8 +122,10 @@ typedef enum {
 typedef enum { PREPARE_SUCCESS, PREPARE_SYNTAX_ERROR,
 PREPARE_UNRECOGNIZED_STATEMENT } PrepareResult;
 
-MetaCommandResult do_meta_command(InputBuffer* input_buffer){
+MetaCommandResult do_meta_command(InputBuffer* input_buffer, Table* table){
   if (strcmp(input_buffer->buffer, ".exit") == 0){
+    close_input_buffer(input_buffer);
+    free_table(table);
     exit(EXIT_SUCCESS);
   } else {
     return META_COMMAND_UNRECOGNIZED_COMMAND;
@@ -193,7 +195,7 @@ int main(int argc, char* argv[]) {
     read_input(input_buffer);
 
     if (input_buffer->buffer[0] == '.') {
-      switch (do_meta_command(input_buffer)){
+      switch (do_meta_command(input_buffer, table)){
         case (META_COMMAND_SUCCESS):
           continue;
         case (META_COMMAND_UNRECOGNIZED_COMMAND):
@@ -217,10 +219,10 @@ int main(int argc, char* argv[]) {
 
     switch (execute_statement(&statement, table)){
       case (EXECUTE_SUCCESS):
-        printf("Executed");
+        printf("Executed.\n");
         break;
       case (EXECUTE_TABLE_FULL):
-        printf("Error: table full");
+        printf("Error: table full.\n");
         break;
     }
   }
